@@ -2,6 +2,7 @@
 """Generate diff between two files."""
 
 import argparse
+import json
 
 
 def main():
@@ -18,11 +19,17 @@ def main():
     
     args = parser.parse_args()
     
-    # Пока просто выводим информацию
-    print(f"First file: {args.first_file}")
-    print(f"Second file: {args.second_file}")
-    if args.format:
-        print(f"Format: {args.format}")
+    # Читаем и парсим первый файл
+    data1 = json.load(open(args.first_file))
+    
+    # Читаем и парсим второй файл
+    data2 = json.load(open(args.second_file))
+    
+    # Выводим содержимое для проверки
+    print("File 1 content:")
+    print(data1)
+    print("\nFile 2 content:")
+    print(data2)
 
 
 if __name__ == '__main__':
