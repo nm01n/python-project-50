@@ -1,5 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/nm01n/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/nm01n/python-project-50/actions)
+[![Python CI](https://github.com/nm01n/python-project-50/actions/workflows/main.yml/badge.svg)](https://github.com/nm01n/python-project-50/actions/workflows/main.yml)
 
 # Difference Calculator
 

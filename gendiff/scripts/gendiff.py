@@ -16,9 +16,9 @@ def main():
         '-f', '--format',
         help='set format of output'
     )
-    
+
     args = parser.parse_args()
-    
+
     # Генерируем и выводим diff
     diff = generate_diff(args.first_file, args.second_file)
     print(diff)
