@@ -27,5 +27,4 @@ print(diff)
 ```
 
 ## Demo
-
-[![asciicast](https://asciinema.org/a/m8AsbXcTgQ7AHet05yevo0E6T.svg)](https://asciinema.org/a/m8AsbXcTgQ7AHet05yevo0E6T)
+[![asciicast](https://asciinema.org/a/ejHo6DPNPaYw64e4ODtJD4EdM.svg)](https://asciinema.org/a/ejHo6DPNPaYw64e4ODtJD4EdM)

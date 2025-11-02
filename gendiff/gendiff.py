@@ -1,10 +1,10 @@
 """Generate diff between two data structures."""
 
-import json
+from gendiff.parser import parse
 
 
 def generate_diff(file_path1, file_path2):
-    """Generate diff between two JSON files.
+    """Generate diff between two configuration files.
 
     Args:
         file_path1: Path to first file
@@ -13,9 +13,9 @@ def generate_diff(file_path1, file_path2):
     Returns:
         String with formatted diff
     """
-    # Читаем и парсим файлы
-    data1 = json.load(open(file_path1))
-    data2 = json.load(open(file_path2))
+    # Парсим файлы
+    data1 = parse(file_path1)
+    data2 = parse(file_path2)
 
     # Получаем все уникальные ключи из обоих файлов
     all_keys = sorted(set(data1.keys()) | set(data2.keys()))
@@ -30,7 +30,7 @@ def generate_diff(file_path1, file_path2):
                 # Значения одинаковые
                 diff_lines.append(f'    {key}: {format_value(data1[key])}')
             else:
-                # Значения разные - сначала из первого, потом из второго
+                # Значения разные
                 diff_lines.append(f'  - {key}: {format_value(data1[key])}')
                 diff_lines.append(f'  + {key}: {format_value(data2[key])}')
         elif key in data1:
