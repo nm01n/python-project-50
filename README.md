@@ -23,6 +23,9 @@ gendiff file1.json file2.json
 # Plain format
 gendiff --format plain file1.json file2.json
 
+# JSON format
+gendiff --format json file1.json file2.json
+
 # With YAML files
 gendiff file1.yml file2.yml
 ```
@@ -38,6 +41,10 @@ print(diff)
 # Plain format
 diff = generate_diff('file1.json', 'file2.json', 'plain')
 print(diff)
+
+# JSON format
+diff = generate_diff('file1.json', 'file2.json', 'json')
+print(diff)
 ```
 
 ## Supported Formats
@@ -49,7 +56,8 @@ print(diff)
 ### Output formats:
 - **stylish** (default) - tree-like format with indentation
 - **plain** - flat text format describing changes
+- **json** - JSON format for programmatic use
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/rgbRN2b27IdnYhTMpChZiZejW.svg)](https://asciinema.org/a/rgbRN2b27IdnYhTMpChZiZejW)
+[![asciicast](https://asciinema.org/a/3si9K5kexRm1COOtg4n4Azl8G.svg)](https://asciinema.org/a/3si9K5kexRm1COOtg4n4Azl8G)

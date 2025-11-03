@@ -69,3 +69,14 @@ def test_generate_diff_plain_format():
     result = generate_diff(file1_path, file2_path, 'plain')
 
     assert result == expected
+
+
+def test_generate_diff_json_format():
+    """Test diff generation in JSON format."""
+    file1_path = get_fixture_path('file1_nested.json')
+    file2_path = get_fixture_path('file2_nested.json')
+    expected = read_file(get_fixture_path('expected_nested_json.txt'))
+
+    result = generate_diff(file1_path, file2_path, 'json')
+
+    assert result == expected
