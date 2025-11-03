@@ -16,8 +16,8 @@ def read_file(filepath):
         return f.read().strip()
 
 
-def test_generate_diff_json():
-    """Test diff generation for JSON files."""
+def test_generate_diff_json_flat():
+    """Test diff generation for flat JSON files."""
     file1_path = get_fixture_path('file1.json')
     file2_path = get_fixture_path('file2.json')
     expected = read_file(get_fixture_path('expected_result.txt'))
@@ -27,8 +27,8 @@ def test_generate_diff_json():
     assert result == expected
 
 
-def test_generate_diff_yaml():
-    """Test diff generation for YAML files."""
+def test_generate_diff_yaml_flat():
+    """Test diff generation for flat YAML files."""
     file1_path = get_fixture_path('file1.yml')
     file2_path = get_fixture_path('file2.yml')
     expected = read_file(get_fixture_path('expected_result.txt'))
@@ -38,11 +38,22 @@ def test_generate_diff_yaml():
     assert result == expected
 
 
-def test_generate_diff_mixed():
-    """Test diff generation for mixed JSON and YAML files."""
-    file1_path = get_fixture_path('file1.json')
-    file2_path = get_fixture_path('file2.yml')
-    expected = read_file(get_fixture_path('expected_result.txt'))
+def test_generate_diff_json_nested():
+    """Test diff generation for nested JSON files."""
+    file1_path = get_fixture_path('file1_nested.json')
+    file2_path = get_fixture_path('file2_nested.json')
+    expected = read_file(get_fixture_path('expected_nested.txt'))
+
+    result = generate_diff(file1_path, file2_path)
+
+    assert result == expected
+
+
+def test_generate_diff_yaml_nested():
+    """Test diff generation for nested YAML files."""
+    file1_path = get_fixture_path('file1_nested.yml')
+    file2_path = get_fixture_path('file2_nested.yml')
+    expected = read_file(get_fixture_path('expected_nested.txt'))
 
     result = generate_diff(file1_path, file2_path)
 
