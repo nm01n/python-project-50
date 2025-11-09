@@ -7,7 +7,7 @@ import os
 def get_fixture_path(filename):
     """Get path to fixture file."""
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(current_dir, 'fixtures', filename)
+    return os.path.join(current_dir, 'test_data', filename)
 
 
 def read_file(filepath):
@@ -22,7 +22,7 @@ def test_generate_diff_json_flat():
     file2_path = get_fixture_path('file2.json')
     expected = read_file(get_fixture_path('expected_result.txt'))
 
-    result = generate_diff(file1_path, file2_path)
+    result = generate_diff('tests/test_data/file1.json', 'tests/test_data/file2.json')
 
     assert result == expected
 
