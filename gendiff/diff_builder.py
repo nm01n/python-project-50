@@ -1,4 +1,8 @@
 """Build diff tree between two data structures."""
+from gendiff.parser import parse
+from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.json_format import format_json
 
 
 def build_diff(data1, data2):
@@ -53,3 +57,29 @@ def build_diff(data1, data2):
             })
 
     return diff
+
+def generate_diff(file_path1, file_path2, format_name='stylish'):
+    """Generate diff between two configuration files.
+
+    Args:
+        file_path1: Path to first file
+        file_path2: Path to second file
+        format_name: Output format (stylish, plain, json)
+
+    Returns:
+        String with formatted diff
+    """
+    data1 = parse(file_path1)
+    data2 = parse(file_path2)
+    diff_tree = build_diff(data1, data2)
+
+    formatters = {
+        'stylish': format_stylish,
+        'plain': format_plain,
+        'json': format_json
+    }
+    
+    if format_name not in formatters:
+        raise ValueError(f"Unknown format: {format_name}")
+    
+    return formatters[format_name](diff_tree)
