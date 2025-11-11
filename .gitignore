@@ -59,3 +59,7 @@ Thumbs.db
 
 # uv
 .uv/
+
+# Python cache
+__pycache__/
+*.py[cod]
