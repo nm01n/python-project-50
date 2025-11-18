@@ -1,43 +1,51 @@
 name: Python CI
 
 on:
-  - push
-  - pull_request
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11", "3.12"]
-    
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
-        with:
-          enable-cache: true
-      
-      - name: Set up Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
-      
-      - name: Install dependencies
-        run: make install
-      
-      - name: Run linter
-        run: make lint
-      
-      - name: Run tests
-        run: make test
-      
-      - name: Test coverage
-        run: make test-coverage
-      
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: false
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Важно для SonarCloud
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        uv pip install --system pytest pytest-cov coverage flake8
+        uv pip install --system -e .
+
+    - name: Run linter
+      run: |
+        flake8 gendiff
+
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=gendiff --cov-report=xml --cov-report=term-missing
+
+    - name: Verify coverage.xml exists
+      run: |
+        ls -la coverage.xml
+        echo "Coverage file content preview:"
+        head -20 coverage.xml
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
