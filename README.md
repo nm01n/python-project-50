@@ -6,7 +6,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nm01n_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=nm01n_python-project-50)
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nm01n_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=nm01n_python-project-50)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nm01n_python-project-50&metric=coverage&v=2)](https://sonarcloud.io/summary/new_code?id=nm01n_python-project-50)
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=nm01n_python-project-50&metric=bugs)](https://sonarcloud.io/summary/new_code?id=nm01n_python-project-50)
 
